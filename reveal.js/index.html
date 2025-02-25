@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <script src="./bob.js"></script>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section id="1">
+          <!-- Slide 1 -->
+          <label for="slider" style="color: white; font-size: 1.5em;"
+            >Value: <span id="sliderValue">1.0</span></label
+          >
+          <input
+            type="range"
+            id="slider"
+            min="0"
+            max="10"
+            step="0.001"
+            value="1.0"
+            style="width: 100%;"
+          />
+          <canvas id="shaderCanvas"></canvas>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+      	hash: true,
+
+      	// Learn about plugins: https://revealjs.com/plugins/
+      	plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+    <!-- <script>
+              document.addEventListener("DOMContentLoaded", function () {
+          Reveal.addEventListener('slidechanged', function(event) {
+              // Check if the slide has a specific ID
+              if (event.currentSlide.id === "1") {
+                  console.log("Entered the Shader Slide!");
+                  runShaderCode();
+              }
+          });
+
+          function runShaderCode() {
+              alert("Running shader code!");
+              // Your WebGL shader setup or any other code goes here...
+          }
+      });
+    </script> -->
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          // Listen for slide change in Reveal.js
+          Reveal.addEventListener('slidechanged', function(event) {
+              const currentSection = event.currentSlide; // Get the current <section>
+
+              // Check if a canvas already exists in the slide to avoid duplication
+              if (!currentSection.querySelector("canvas")) {
+                  const canvas = document.createElement("canvas");
+                //   canvas.width = window.innerWidth;
+                //   canvas.height = window.innerHeight;
+                //   canvas.style.position = "absolute";
+                //   canvas.style.top = "0";
+                //   canvas.style.left = "0";
+                //   canvas.style.zIndex = "-1"; // Puts it behind other content
+                  currentSection.appendChild(canvas);
+
+                  console.log("Canvas added to section:", currentSection);
+              }
+          });
+      });
+    </script> -->
+
+    <script>
+        blah(`
+
+      //     precision mediump float;
+      //     uniform float time;
+      //   //   uniform float u_value;
+      //     uniform vec2 resolution;
+
+      //     void main() {
+      //     vec2 uv = gl_FragCoord.xy / resolution.xy;
+      //     //   vec3 color = u_value +  u_value * cos(/* time */u_value + uv.xyx + vec3(0, 2, 4));
+      //     //   gl_FragColor = vec4(frac(uv* 10.), 0., 1.0);
+      //     gl_FragColor = vec4(1.,0., 0., 1.);
+
+
+                  precision mediump float;
+                  uniform float time;
+                    uniform float u_value;
+                  uniform vec2 resolution;
+
+                  void main() {
+                    vec2 uv = gl_FragCoord.xy / resolution.y;
+                    uv.x += time;
+            gl_FragColor = vec4(fract(uv* 3.), 0., 1.0);
+                  }
+                  `)
+    </script>
+  </body>
+</html>
