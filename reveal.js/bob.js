@@ -79,7 +79,6 @@ const blah = (fragment_shader_code, obj) => {
   })
 
   function render(time) {
-    console.log(valuuuu)
     gl.uniform1f(timeUniform, valuuuu /* time * 0.001 */)
     gl.uniform1f(valueUniform, valuuuu /* obj.val */)
     gl.uniform2f(resolutionUniform, canvas.width, canvas.height)
