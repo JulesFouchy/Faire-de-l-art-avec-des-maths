@@ -24,8 +24,7 @@
           <span id="shader-add"></span>
           <script>
             shader_slide({
-                code: "uv.x += u_value;",
-                displayed_code: (value)=>`position.x = position.x + ${value}`,
+                code: (value)=>`position.x = position.x + ${value}`,
                 initial_value: 0,
                 min_value: -5,
                 max_value:5,
@@ -37,12 +36,35 @@
           <span id="shader-mult"></span>
           <script>
             shader_slide({
-                code: "uv.x *= u_value;",
-                displayed_code: (value)=>`position.x = position.x * ${value}`,
+                code: (value)=>`position.x = position.x * ${value}`,
                 initial_value: 1,
                 min_value: -5,
                 max_value:5,
                 span_id: "shader-mult",
+            })
+          </script>
+        </section>
+        <section>
+          <span id="shader-cos"></span>
+          <script>
+            shader_slide({
+                code:  (value)=>`position.x = cos(position.x * ${value});`,
+                initial_value: 1,
+                min_value: -5,
+                max_value:5,
+                span_id: "shader-cos",
+            })
+          </script>
+        </section>
+        <section>
+          <span id="shader-cos2"></span>
+          <script>
+            shader_slide({
+                code:  (value)=>`position.x = position.x + 0.1 * cos(position.y * ${value});`,
+                initial_value: 0,
+                min_value: 0,
+                max_value:20,
+                span_id: "shader-cos2",
             })
           </script>
         </section>

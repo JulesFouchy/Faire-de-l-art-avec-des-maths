@@ -90,7 +90,6 @@ const blah = (fragment_shader_code, span_id) => {
 
 const shader_slide = ({
   code,
-  displayed_code,
   initial_value,
   min_value,
   max_value,
@@ -98,7 +97,7 @@ const shader_slide = ({
 }) => {
   const ele = document.getElementById(span_id)
   ele.innerHTML = `
-          <label for="slider" style="color: white; font-size: 1.5em;">
+          <label for="slider" style="color: white; font-size: 1.em;">
             <pre><code class="hljs glsl" id="mycode${span_id}" data-trim>
 </code></pre>
           </label>
@@ -118,10 +117,10 @@ const shader_slide = ({
   //   const sliderValue = document.getElementById("sliderValue");
   // const obj = {value: 0.}
   let valuuuu = parseFloat(slider.value)
-  codehtml.innerHTML = displayed_code(valuuuu)
+  codehtml.innerHTML = code(valuuuu)
   slider.addEventListener("input", function () {
     valuuuu = parseFloat(slider.value)
-    codehtml.innerHTML = displayed_code(valuuuu)
+    codehtml.innerHTML = code(valuuuu)
     // sliderValue.textContent = obj.value.toFixed(1)
   })
 
@@ -133,9 +132,9 @@ const shader_slide = ({
         uniform vec2 resolution;
 
         void main() {
-            vec2 uv = gl_FragCoord.xy / resolution.y;
-            ${code}
-        gl_FragColor = vec4(fract(uv* 3.), 0., 1.0);
+            vec2 position = gl_FragCoord.xy / resolution.y;
+            ${code("u_value")};
+        gl_FragColor = vec4(fract(position* 3.), 0., 1.0);
                         }
                         `,
     span_id
