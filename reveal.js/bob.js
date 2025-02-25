@@ -1,5 +1,5 @@
-const blah = (fragment_shader_code, obj) => {
-  const canvas = document.getElementById("shaderCanvas")
+const blah = (fragment_shader_code, span_id) => {
+  const canvas = document.getElementById(`shaderCanvas${span_id}`)
   const gl = canvas.getContext("webgl")
 
   // Vertex Shader
@@ -69,10 +69,10 @@ const blah = (fragment_shader_code, obj) => {
   window.addEventListener("resize", resizeCanvas)
   resizeCanvas()
 
-  const slider = document.getElementById("slider")
+  const slider = document.getElementById(`slider${span_id}`)
   //   const sliderValue = document.getElementById("sliderValue");
   // const obj = {value: 0.}
-  let valuuuu = 0
+  let valuuuu = parseFloat(slider.value)
   slider.addEventListener("input", function () {
     valuuuu = parseFloat(slider.value)
     // sliderValue.textContent = obj.value.toFixed(1)
@@ -86,4 +86,58 @@ const blah = (fragment_shader_code, obj) => {
     requestAnimationFrame(render)
   }
   requestAnimationFrame(render)
+}
+
+const shader_slide = ({
+  code,
+  displayed_code,
+  initial_value,
+  min_value,
+  max_value,
+  span_id,
+}) => {
+  const ele = document.getElementById(span_id)
+  ele.innerHTML = `
+          <label for="slider" style="color: white; font-size: 1.5em;">
+            <pre><code class="hljs glsl" id="mycode${span_id}" data-trim>
+</code></pre>
+          </label>
+          <input
+            type="range"
+            id="slider${span_id}"
+            min="${min_value}"
+            max="${max_value}"
+            step="0.001"
+            value="${initial_value}"
+            style="width: 100%;"
+          />
+          <canvas id="shaderCanvas${span_id}" style="width: 100%;"></canvas>
+    `
+  const slider = document.getElementById(`slider${span_id}`)
+  const codehtml = document.getElementById(`mycode${span_id}`)
+  //   const sliderValue = document.getElementById("sliderValue");
+  // const obj = {value: 0.}
+  let valuuuu = parseFloat(slider.value)
+  codehtml.innerHTML = displayed_code(valuuuu)
+  slider.addEventListener("input", function () {
+    valuuuu = parseFloat(slider.value)
+    codehtml.innerHTML = displayed_code(valuuuu)
+    // sliderValue.textContent = obj.value.toFixed(1)
+  })
+
+  blah(
+    `
+        precision mediump float;
+        uniform float time;
+      uniform float u_value;
+        uniform vec2 resolution;
+
+        void main() {
+            vec2 uv = gl_FragCoord.xy / resolution.y;
+            ${code}
+        gl_FragColor = vec4(fract(uv* 3.), 0., 1.0);
+                        }
+                        `,
+    span_id
+  )
 }

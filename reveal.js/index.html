@@ -21,21 +21,30 @@
     <div class="reveal">
       <div class="slides">
         <section id="1">
-          <label for="slider" style="color: white; font-size: 1.5em;">
-            <pre><code class="hljs glsl" id="mycode" data-trim>
-position.x += 1.0
-</code></pre>
-          </label>
-          <input
-            type="range"
-            id="slider"
-            min="0"
-            max="10"
-            step="0.001"
-            value="1.0"
-            style="width: 100%;"
-          />
-          <canvas id="shaderCanvas" style="width: 100%;"></canvas>
+          <span id="shader-add"></span>
+          <script>
+            shader_slide({
+                code: "uv.x += u_value;",
+                displayed_code: (value)=>`position.x = position.x + ${value}`,
+                initial_value: 0,
+                min_value: -5,
+                max_value:5,
+                span_id: "shader-add",
+            })
+          </script>
+        </section>
+        <section id="2">
+          <span id="shader-mult"></span>
+          <script>
+            shader_slide({
+                code: "uv.x *= u_value;",
+                displayed_code: (value)=>`position.x = position.x * ${value}`,
+                initial_value: 1,
+                min_value: -5,
+                max_value:5,
+                span_id: "shader-mult",
+            })
+          </script>
         </section>
       </div>
     </div>
@@ -94,21 +103,7 @@ position.x += 1.0
       });
     </script> -->
 
-    <script>
-              blah(`
-        precision mediump float;
-        uniform float time;
-      uniform float u_value;
-        uniform vec2 resolution;
-
-        void main() {
-            vec2 uv = gl_FragCoord.xy / resolution.y;
-            uv.x += u_value;
-        gl_FragColor = vec4(fract(uv* 3.), 0., 1.0);
-                        }
-                        `)
-    </script>
-    <script>
+    <!-- <script>
               const slider = document.getElementById("slider")
               const code = document.getElementById("mycode")
       //   const sliderValue = document.getElementById("sliderValue");
@@ -116,9 +111,9 @@ position.x += 1.0
       let valuuuu = 0
       slider.addEventListener("input", function () {
         valuuuu = parseFloat(slider.value)
-        code.innerHTML = `position.x <- position.x + ${valuuuu}`
+        code.innerHTML = `position.x = position.x + ${valuuuu}`
         // sliderValue.textContent = obj.value.toFixed(1)
       })
-    </script>
+    </script> -->
   </body>
 </html>
