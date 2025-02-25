@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>reveal.js</title>
+    <title>Faire de l'art avec des maths</title>
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
@@ -16,11 +16,11 @@
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
   </head>
-  <script src="./bob.js"></script>
+  <script src="./shader_slide.js"></script>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section id="1">
+        <section>
           <span id="shader-add"></span>
           <script>
             shader_slide({
@@ -33,7 +33,7 @@
             })
           </script>
         </section>
-        <section id="2">
+        <section>
           <span id="shader-mult"></span>
           <script>
             shader_slide({
@@ -64,56 +64,5 @@
       	plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
     </script>
-    <!-- <script>
-              document.addEventListener("DOMContentLoaded", function () {
-          Reveal.addEventListener('slidechanged', function(event) {
-              // Check if the slide has a specific ID
-              if (event.currentSlide.id === "1") {
-                  console.log("Entered the Shader Slide!");
-                  runShaderCode();
-              }
-          });
-
-          function runShaderCode() {
-              alert("Running shader code!");
-              // Your WebGL shader setup or any other code goes here...
-          }
-      });
-    </script> -->
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          // Listen for slide change in Reveal.js
-          Reveal.addEventListener('slidechanged', function(event) {
-              const currentSection = event.currentSlide; // Get the current <section>
-
-              // Check if a canvas already exists in the slide to avoid duplication
-              if (!currentSection.querySelector("canvas")) {
-                  const canvas = document.createElement("canvas");
-                //   canvas.width = window.innerWidth;
-                //   canvas.height = window.innerHeight;
-                //   canvas.style.position = "absolute";
-                //   canvas.style.top = "0";
-                //   canvas.style.left = "0";
-                //   canvas.style.zIndex = "-1"; // Puts it behind other content
-                  currentSection.appendChild(canvas);
-
-                  console.log("Canvas added to section:", currentSection);
-              }
-          });
-      });
-    </script> -->
-
-    <!-- <script>
-              const slider = document.getElementById("slider")
-              const code = document.getElementById("mycode")
-      //   const sliderValue = document.getElementById("sliderValue");
-      // const obj = {value: 0.}
-      let valuuuu = 0
-      slider.addEventListener("input", function () {
-        valuuuu = parseFloat(slider.value)
-        code.innerHTML = `position.x = position.x + ${valuuuu}`
-        // sliderValue.textContent = obj.value.toFixed(1)
-      })
-    </script> -->
   </body>
 </html>
