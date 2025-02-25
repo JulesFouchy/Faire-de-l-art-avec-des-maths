@@ -79,7 +79,7 @@ const blah = (fragment_shader_code, span_id) => {
   })
 
   function render(time) {
-    gl.uniform1f(timeUniform, valuuuu /* time * 0.001 */)
+    gl.uniform1f(timeUniform, time / 1000)
     gl.uniform1f(valueUniform, valuuuu /* obj.val */)
     gl.uniform2f(resolutionUniform, canvas.width, canvas.height)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
@@ -130,6 +130,7 @@ const shader_slide = ({
         uniform float time;
       uniform float u_value;
         uniform vec2 resolution;
+        const float pi = 3.141592653;
 
         void main() {
             vec2 position = gl_FragCoord.xy / resolution.y;

@@ -60,12 +60,27 @@
           <span id="shader-cos2"></span>
           <script>
             shader_slide({
-                code:  (value)=>`position.x = position.x + 0.1 * cos(position.y * ${value});`,
+                code:  (value)=>`position.x = position.x + 0.1 * cos(position.y * ${value} + time);`,
                 initial_value: 0,
                 min_value: 0,
                 max_value:20,
                 span_id: "shader-cos2",
             })
+          </script>
+        </section>
+        <section>
+          <span id="shader-circle"></span>
+          <script>
+                        shader_slide({
+                            code:  (value)=>`
+                            position.x += cos(time*0.3);
+                            position.y += cos(time*0.3 + pi/2.0);
+            `,
+                            initial_value: 0,
+                            min_value: 0,
+                            max_value:20,
+                            span_id: "shader-circle",
+                        })
           </script>
         </section>
       </div>
