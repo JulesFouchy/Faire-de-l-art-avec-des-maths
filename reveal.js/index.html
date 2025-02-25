@@ -83,6 +83,21 @@
                         })
           </script>
         </section>
+        <section>
+          <span id="shader-curve-circle"></span>
+          <script>
+                        shader_slide({
+                            code:  (value)=>`
+                            position.x = cos(t * 2. * pi);
+                            position.y = cos(t * 2. * pi + pi/2.0);
+            `,
+                            initial_value: 0,
+                            min_value: 0,
+                            max_value:20,
+                            span_id: "shader-curve-circle",
+                        })
+          </script>
+        </section>
       </div>
     </div>
 

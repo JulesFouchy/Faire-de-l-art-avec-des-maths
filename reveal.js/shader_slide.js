@@ -12,6 +12,7 @@ const blah = (fragment_shader_code, span_id) => {
 
   function createShader(gl, type, source) {
     const shader = gl.createShader(type)
+    // console.log(source)
     gl.shaderSource(shader, source)
     gl.compileShader(shader)
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
@@ -88,6 +89,54 @@ const blah = (fragment_shader_code, span_id) => {
   requestAnimationFrame(render)
 }
 
+const curve_shader_code = (code) => `
+
+#define saturate(v) clamp(v, 0., 1.)
+// https://iquilezles.org/articles/distfunctions2d/
+float sdSegment(vec2 p, vec2 a, vec2 b, float thickness)
+{
+    vec2  pa = p - a, ba = b - a;
+    float h = saturate(dot(pa, ba) / dot(ba, ba));
+    return length(pa - ba * h) - thickness;
+}
+
+float get_dist(vec2 uv)
+{
+    float dist_to_curve = 9999999.;
+    vec2  previous_position; // Will be filled during the first iteration of the loop
+
+    const int  nb_segments = 20;
+    const float thickness = 0.005;
+
+    for (int i = 0; i <= nb_segments; i++)
+    {
+        float t = float(i) / float(nb_segments); // 0 to 1
+
+        vec2 position;
+        ${code("u_value")};
+        if (i != 0) // During the first iteration we don't yet have two points to draw a segment between
+        {
+            float segment   = sdSegment(uv, previous_position, position, thickness);
+            dist_to_curve   = min(dist_to_curve, segment);
+        }
+
+        previous_position = position;
+    }
+
+    return dist_to_curve;
+}
+
+void main() {
+    vec2 position = gl_FragCoord.xy / resolution.xy;
+position -= 0.5;
+position *= 2.;
+position.x *= resolution.x / resolution.y;
+
+    float bob = step(get_dist(position), 0.);
+    gl_FragColor = vec4(vec3(bob), 1.0);
+                }
+`
+
 const shader_slide = ({
   code,
   initial_value,
@@ -131,12 +180,7 @@ const shader_slide = ({
       uniform float u_value;
         uniform vec2 resolution;
         const float pi = 3.141592653;
-
-        void main() {
-            vec2 position = gl_FragCoord.xy / resolution.y;
-            ${code("u_value")};
-        gl_FragColor = vec4(fract(position* 3.), 0., 1.0);
-                        }
+${curve_shader_code(code)}
                         `,
     span_id
   )
