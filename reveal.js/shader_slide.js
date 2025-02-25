@@ -5,8 +5,9 @@ const blah = (fragment_shader_code, span_id) => {
   // Vertex Shader
   const vertexShaderSource = `
   attribute vec4 position;
+  uniform float enabled;
   void main() {
-    gl_Position = position;
+    gl_Position = enabled * position;
   }
 `
 
@@ -59,6 +60,7 @@ const blah = (fragment_shader_code, span_id) => {
 
   const timeUniform = gl.getUniformLocation(program, "time")
   const resolutionUniform = gl.getUniformLocation(program, "resolution")
+  const enabledUniform = gl.getUniformLocation(program, "enabled")
 
   const valueUniform = gl.getUniformLocation(program, "u_value")
 
@@ -71,6 +73,8 @@ const blah = (fragment_shader_code, span_id) => {
   resizeCanvas()
 
   const slider = document.getElementById(`slider${span_id}`)
+  const section = document.querySelector("section")
+  console.log(section)
   //   const sliderValue = document.getElementById("sliderValue");
   // const obj = {value: 0.}
   let valuuuu = parseFloat(slider.value)
@@ -82,6 +86,7 @@ const blah = (fragment_shader_code, span_id) => {
   function render(time) {
     gl.uniform1f(timeUniform, time / 1000)
     gl.uniform1f(valueUniform, valuuuu /* obj.val */)
+    gl.uniform1f(enabledUniform, 0)
     gl.uniform2f(resolutionUniform, canvas.width, canvas.height)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
     requestAnimationFrame(render)

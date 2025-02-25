@@ -118,3 +118,29 @@
     </script>
   </body>
 </html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      // Listen for slide change in Reveal.js
+      Reveal.addEventListener('slidechanged', function(event) {
+          const currentSection = event.currentSlide; // Get the current <section>
+            console.log(event)
+            console.log(event.previousSlide)
+            console.log(currentSection.querySelector("section"))
+
+          // Check if a canvas already exists in the slide to avoid duplication
+        //   if (!currentSection.querySelector("canvas")) {
+        //       const canvas = document.createElement("canvas");
+        //     //   canvas.width = window.innerWidth;
+        //     //   canvas.height = window.innerHeight;
+        //     //   canvas.style.position = "absolute";
+        //     //   canvas.style.top = "0";
+        //     //   canvas.style.left = "0";
+        //     //   canvas.style.zIndex = "-1"; // Puts it behind other content
+        //       currentSection.appendChild(canvas);
+
+        //       console.log("Canvas added to section:", currentSection);
+        //   }
+      });
+  });
+</script>
