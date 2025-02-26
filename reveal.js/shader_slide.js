@@ -12,6 +12,7 @@ const blah = (fragment_shader_code, span_id) => {
 
   function createShader(gl, type, source) {
     const shader = gl.createShader(type)
+    // console.log(source)
     gl.shaderSource(shader, source)
     gl.compileShader(shader)
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
@@ -98,7 +99,7 @@ const shader_slide = ({
   const ele = document.getElementById(span_id)
   ele.innerHTML = `
           <label for="slider" style="color: white; font-size: 1.em;">
-            <pre><code class="hljs glsl" id="mycode${span_id}" data-trim>
+            <pre><code class="hljs" id="mycode${span_id}" data-trim>
 </code></pre>
           </label>
           <input
@@ -151,7 +152,7 @@ const shader_slide_noise = ({
   const ele = document.getElementById(span_id)
   ele.innerHTML = `
           <label for="slider" style="color: white; font-size: 1.em;">
-            <pre><code class="hljs glsl" id="mycode${span_id}" data-trim>
+            <pre><code class="hljs" id="mycode${span_id}" data-trim>
 </code></pre>
           </label>
           <input
@@ -184,6 +185,12 @@ const shader_slide_noise = ({
       uniform float u_value;
         uniform vec2 resolution;
         const float pi = 3.141592653;
+
+        float pattern(vec2 pos) {
+  float patternX = 0.5 + 0.5 * cos(pos.x * 20.);
+  float patternY = 0.5 + 0.5 * cos(pos.y * 20.);
+  return 0.5 * (patternX + patternY);
+}
 
         void main() {
             vec2 position = gl_FragCoord.xy / resolution.y;

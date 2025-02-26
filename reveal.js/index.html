@@ -340,6 +340,23 @@ color = 0.5 * (patternX + patternY)`,
             </section>
           </section>
 
+          
+        <section>
+            <span id="shader-fractal"></span>
+            <script>
+                                      shader_slide_noise({
+                                          code:  (value)=>
+`color = pattern(position * 2.) / 2.
+      + pattern(position * 4.) / 4.
+      + pattern(position * 8.) / 8.;`,
+                                          initial_value: 20,
+                                          min_value: 0,
+                                          max_value:20,
+                                          span_id: "shader-fractal",
+                                      })
+            </script>
+          </section>
+
         <!-- <section>
           <span id="shader-circle"></span>
           <script>
