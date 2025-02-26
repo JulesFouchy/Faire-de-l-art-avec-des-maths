@@ -202,3 +202,108 @@ const shader_slide_noise = ({
     span_id
   )
 }
+
+const curve_shader_code = (code,curve_color) => `
+
+#define saturate(v) clamp(v, 0., 1.)
+// https://iquilezles.org/articles/distfunctions2d/
+float sdSegment(vec2 p, vec2 a, vec2 b, float thickness)
+{
+    vec2  pa = p - a, ba = b - a;
+    float h = saturate(dot(pa, ba) / dot(ba, ba));
+    return length(pa - ba * h) - thickness;
+}
+
+float get_dist(vec2 uv)
+{
+    float dist_to_curve = 9999999.;
+    vec2  previous_position; // Will be filled during the first iteration of the loop
+
+    const int  nb_segments = 20;
+    const float thickness = 0.005;
+
+    for (int i = 0; i <= nb_segments; i++)
+    {
+        float t = float(i) / float(nb_segments); // 0 to 1
+
+        vec2 position;
+        ${code("7.")};
+        if (i != 0) // During the first iteration we don't yet have two points to draw a segment between
+        {
+            float segment   = sdSegment(uv, previous_position, position, thickness);
+            dist_to_curve   = min(dist_to_curve, segment);
+        }
+
+        previous_position = position;
+    }
+
+    return dist_to_curve;
+}
+
+void main() {
+    vec2 pos = gl_FragCoord.xy / resolution.xy;
+pos -= 0.5;
+pos *= 2.;
+pos.x *= resolution.x / resolution.y;
+
+    float bob = float(${curve_color}) * step(get_dist(pos), 0.);
+    {
+    float t = time;
+    vec2 position = vec2(0.);
+    ${code("u_value")};
+    bob += step(distance(position, pos),0.02);
+    }
+    gl_FragColor = vec4(vec3(bob), 1.0);
+                }
+`
+const shader_slide_curve = ({
+  code,
+  initial_value,
+  min_value,
+  max_value,
+  curve_color,
+  span_id,
+}) => {
+  const ele = document.getElementById(span_id)
+  ele.innerHTML = `
+          <label for="slider" style="color: white; font-size: 1.em;">
+            <pre><code class="hljs" id="mycode${span_id}" data-trim>
+</code></pre>
+          </label>
+          <input
+            type="range"
+            id="slider${span_id}"
+            min="${min_value}"
+            max="${max_value}"
+            step="0.001"
+            value="${initial_value}"
+            style="width: 100%;"
+          />
+          <canvas id="shaderCanvas${span_id}" style="width: 100%;"></canvas>
+    `
+  const slider = document.getElementById(`slider${span_id}`)
+  const codehtml = document.getElementById(`mycode${span_id}`)
+  //   const sliderValue = document.getElementById("sliderValue");
+  // const obj = {value: 0.}
+  let valuuuu = parseFloat(slider.value)
+  codehtml.innerHTML = code(valuuuu)
+  slider.addEventListener("input", function () {
+    valuuuu = parseFloat(slider.value)
+    codehtml.innerHTML = code(valuuuu)
+    // sliderValue.textContent = obj.value.toFixed(1)
+  })
+
+  blah(
+    `
+        precision mediump float;
+        uniform float time;
+      uniform float u_value;
+        uniform vec2 resolution;
+        const float pi = 3.141592653;
+
+
+        ${curve_shader_code(code, curve_color)}
+                        `,
+    span_id
+  )
+}

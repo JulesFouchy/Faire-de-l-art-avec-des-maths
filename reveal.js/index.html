@@ -391,7 +391,25 @@ color = 0.5 * (patternX + patternY)`,
           
         <section>
             <h2>Chapitre 3</h2>
-            <h3 class="fragment">Courbes</h3>
+            <span  class="fragment">
+                <h3>Courbes</h3>
+                <p>(équations paramétriques)</p>
+            </span>
+          </section>
+
+          <section>
+            <span id="shader-curve1"></span>
+            <script>
+                                      shader_slide_curve({
+                                          code:  (value)=>
+`position.x = cos(t * ${value})`,
+                                          initial_value: 0,
+                                          min_value: 0,
+                                          max_value:20,
+                                          curve_color:0.,
+                                          span_id: "shader-curve1",
+                                      })
+            </script>
           </section>
 
         <!-- <section>
