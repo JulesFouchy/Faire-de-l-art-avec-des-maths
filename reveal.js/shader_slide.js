@@ -191,6 +191,19 @@ const shader_slide_noise = ({
   float patternY = 0.5 + 0.5 * cos(pos.y * 20.);
   return 0.5 * (patternX + patternY);
 }
+vec2 rotate(vec2 position, float angle)
+{
+vec2 new_X_axis = vec2(
+    cos(angle),
+    sin(angle)
+);
+vec2 new_Y_axis = vec2(
+    -sin(angle),
+    cos(angle)
+);
+return position.x * new_X_axis
+         + position.y * new_Y_axis;
+  }
 
         void main() {
             vec2 position = gl_FragCoord.xy / resolution.y;

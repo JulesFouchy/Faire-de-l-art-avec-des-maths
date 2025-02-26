@@ -56,7 +56,34 @@
             <p>Des MATHS ??? 😱</p>
           </section>
           <section>
-            <p>Jolies images</p>
+            <img class="r-frame" data-src="./img/02.png" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/04.png" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/05.png" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/11.png" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/16.png" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/18.png" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/21.png" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/22.png" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/gif.gif" style="height: 500px;" />
+        </section>
+        <section>
+            <img class="r-frame" data-src="./img/gif2.gif" style="height: 500px;" />
           </section>
         </section>
         <section>
@@ -529,7 +556,30 @@ position = position.x * new_X_axis
             <img class="r-frame" data-src="./img/rotmat.png" />
           </section>
           </section>
+          <section>
+            <span id="shader-fractrot"></span>
+            <script>
+                                      shader_slide_noise({
+                                          code:  (value)=>
+`color = pattern(rotate(position, 0. * ${value}) * 2.) / 2.
+      + pattern(rotate(position, 1. * ${value}) * 4.) / 4.
+      + pattern(rotate(position, 2. * ${value}) * 8.) / 8.;`,
+                                          initial_value: 0,
+                                          min_value: 0,
+                                          max_value:2,
+                                          span_id: "shader-fractrot",
+                                      })
+            </script>
+          </section>
 
+          <section>
+            <h2>Chapitre 4</h2>
+            <span class="fragment">
+                <h3 >everything</h3>
+                <h3 >everywhere</h3>
+                <h3 >all at once</h3>
+            </span>
+          </section>
         <!-- <section>
           <span id="shader-circle"></span>
           <script>
