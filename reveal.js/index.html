@@ -47,6 +47,10 @@
             <img class="r-frame" data-src="./img/Coollab.png" />
           </section>
           <section>
+            <p><a href="https://coollab-art.com/">Coollab</a></p>
+            <img class="r-frame" data-src="./img/V1.png" />
+          </section>
+          <section>
             <p>Smode</p>
             <img class="r-frame" data-src="./img/smode.jpg" />
           </section>
@@ -219,10 +223,9 @@
             <span id="shader-cos6"></span>
             <script>
               shader_slide({
-                  code:  (value)=>`
-                  float t = cos(time) + 2.;
-                  position.x = position.x + 0.1 * cos(position.y * t);
-                  `,
+                  code:  (value)=>
+`float t = cos(time) + 2.;
+position.x = position.x + 0.1 * cos(position.y * t);`,
                   initial_value: 0,
                   min_value: 0,
                   max_value:20,
@@ -491,7 +494,7 @@ position.y = sin(t * ${value});
                                           initial_value: 1,
                                           min_value: 0,
                                           max_value:10,
-                                          curve_color:0.5,
+                                          curve_color:1.,
                                           point_color:0.,
                                           span_id: "shader-curve4",
                                       })
@@ -579,11 +582,9 @@ position = position.x * new_X_axis
 
           <section>
             <h2>Chapitre 4</h2>
-            <span class="fragment">
-                <h3 >everything</h3>
-                <h3 >everywhere</h3>
-                <h3 >all at once</h3>
-            </span>
+                <h3 class="fragment">everything</h3>
+                <h3 class="fragment">everywhere</h3>
+                <h3 class="fragment">all at once</h3>
           </section>
 
           <section>
