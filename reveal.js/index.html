@@ -70,6 +70,10 @@
             <img class="r-frame" data-src="./img/cos.png" />
           </section>
         </section>
+        <section>
+          <p>Talk interactif !</p>
+          <p class="fragment">Arrêtez-moi pour poser vos questions</p>
+        </section>
 
         <section>
           <h2>Chapitre 1</h2>
@@ -100,28 +104,110 @@
           </script>
         </section>
         <section>
-          <span id="shader-cos"></span>
+          <section>
+            <span id="shader-cos"></span>
+            <script>
+              shader_slide({
+                  code:  (value)=>`position.x = cos(position.x * ${value});`,
+                  initial_value: 1,
+                  min_value: -10,
+                  max_value:10,
+                  span_id: "shader-cos",
+              })
+            </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/cos.png" />
+          </section>
+        </section>
+        <section>
+          <section>
+            <span id="shader-cos2"></span>
+            <script>
+              shader_slide({
+                  code:  (value)=>`position.x = position.x + 0.1 * cos(position.x * ${value});`,
+                  initial_value: 0,
+                  min_value: 0,
+                  max_value:20,
+                  span_id: "shader-cos2",
+              })
+            </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/cos2.png" />
+          </section>
+        </section>
+        <section>
+          <section>
+            <span id="shader-cos3"></span>
+            <script>
+              shader_slide({
+                  code:  (value)=>`position.x = position.x + 0.1 * cos(position.y * ${value});`,
+                  initial_value: 0,
+                  min_value: 0,
+                  max_value:20,
+                  span_id: "shader-cos3",
+              })
+            </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/19.png" />
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/6.png" />
+          </section>
+        </section>
+        <section>
+          <section>
+            <span id="shader-cos4"></span>
+            <script>
+              shader_slide({
+                  code:  (value)=>`position.x = position.x + 0.1 * cos(position.y * ${value} + time);`,
+                  initial_value: 3,
+                  min_value: 0,
+                  max_value:20,
+                  span_id: "shader-cos4",
+              })
+            </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/cos.png" />
+          </section>
+        </section>
+
+        <section>
+          <span id="shader-cos5"></span>
           <script>
             shader_slide({
-                code:  (value)=>`position.x = cos(position.x * ${value});`,
-                initial_value: 1,
-                min_value: -5,
-                max_value:5,
-                span_id: "shader-cos",
+                code:  (value)=>`position.x = position.x + 0.1 * cos(position.y * ${value});`,
+                initial_value: 0,
+                min_value: 0,
+                max_value:20,
+                span_id: "shader-cos5",
             })
           </script>
         </section>
         <section>
-          <span id="shader-cos2"></span>
-          <script>
-            shader_slide({
-                code:  (value)=>`position.x = position.x + 0.1 * cos(position.y * ${value} + time);`,
-                initial_value: 0,
-                min_value: 0,
-                max_value:20,
-                span_id: "shader-cos2",
-            })
-          </script>
+          <section>
+            <span id="shader-cos6"></span>
+            <script>
+              shader_slide({
+                  code:  (value)=>`
+                  float t = cos(time) + 2.;
+                  position.x = position.x + 0.1 * cos(position.y * t);
+                  `,
+                  initial_value: 0,
+                  min_value: 0,
+                  max_value:20,
+                  span_id: "shader-cos6",
+              })
+            </script>
+          </section>
+          <section>
+            <p>[-1, +1]</p>
+            <p class="fragment">+ 2</p>
+            <p>[+1, +3]</p>
+          </section>
         </section>
         <section>
           <span id="shader-circle"></span>
