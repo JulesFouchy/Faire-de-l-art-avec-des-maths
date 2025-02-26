@@ -219,15 +219,15 @@ float get_dist(vec2 uv)
     float dist_to_curve = 9999999.;
     vec2  previous_position; // Will be filled during the first iteration of the loop
 
-    const int  nb_segments = 20;
+    const int  nb_segments = 10; // TODO 40
     const float thickness = 0.005;
 
     for (int i = 0; i <= nb_segments; i++)
     {
-        float t = float(i) / float(nb_segments); // 0 to 1
+        float t = float(i) / float(nb_segments) * 2. * pi; // 0 to 1
 
         vec2 position;
-        ${code("7.")};
+        ${code("u_value")};
         if (i != 0) // During the first iteration we don't yet have two points to draw a segment between
         {
             float segment   = sdSegment(uv, previous_position, position, thickness);
@@ -246,7 +246,7 @@ pos -= 0.5;
 pos *= 2.;
 pos.x *= resolution.x / resolution.y;
 
-    float bob = float(${curve_color}) * step(get_dist(pos), 0.);
+    float bob =float(${curve_color}) < 0.001 ? 0. :(  float(${curve_color}) * step(get_dist(pos), 0.));
     {
     float t = time;
     vec2 position = vec2(0.);

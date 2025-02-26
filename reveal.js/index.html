@@ -411,6 +411,74 @@ color = 0.5 * (patternX + patternY)`,
                                       })
             </script>
           </section>
+          <section>
+            <span id="shader-curve2"></span>
+            <script>
+                                      shader_slide_curve({
+                                          code:  (value)=>
+`position.x = cos(t * ${value});
+position.y = cos(t * ${value});
+`,
+                                          initial_value: 0,
+                                          min_value: 0,
+                                          max_value:20,
+                                          curve_color:0.,
+                                          span_id: "shader-curve2",
+                                      })
+            </script>
+          </section>
+          <section>
+          <section>
+            <span id="shader-curve3"></span>
+            <script>
+                                      shader_slide_curve({
+                                          code:  (value)=>
+`position.x = cos(t * 2.);
+position.y = cos(t * 2. + ${value});
+`,
+                                          initial_value: 0,
+                                          min_value: 0,
+                                          max_value:1.57079632679,
+                                          curve_color:0.5,
+                                          span_id: "shader-curve3",
+                                      })
+            </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/cos.gif" />
+          </section>
+          </section>
+          
+          <section>
+          <section>
+            <span id="shader-curve4"></span>
+            <script>
+                                      shader_slide_curve({
+                                          code:  (value)=>
+`position.x = cos(t);
+position.y = sin(t * ${value});
+`,
+                                          initial_value: 1,
+                                          min_value: 0,
+                                          max_value:10,
+                                          curve_color:0.5,
+                                          span_id: "shader-curve4",
+                                      })
+            </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/lissajou.jpg" />
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/liss.png" style="width: 500px;" />
+          </section>
+          
+          <section>
+            <video controls style="width: 500px;">
+                <source src="./img/liss.mp4" type="video/mp4">
+              </video>
+          </section>
+          </section>
 
         <!-- <section>
           <span id="shader-circle"></span>
