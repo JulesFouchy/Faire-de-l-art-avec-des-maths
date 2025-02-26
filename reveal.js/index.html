@@ -209,7 +209,138 @@
             <p>[+1, +3]</p>
           </section>
         </section>
+
         <section>
+          <h2>Chapitre 2</h2>
+          <h3 class="fragment">Noise</h3>
+        </section>
+        <section>
+          <!-- <section>
+            <img class="r-frame" data-src="./img/noise(2).png" />
+          </section> -->
+          <section>
+            <img class="r-frame" data-src="./img/noise(0).png" />
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/noise(1).png" />
+          </section>
+        </section>
+        <section>
+          <section>
+            <img class="r-frame" data-src="./img/minecraft.png" />
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/noise_tex.png" />
+          </section>
+        </section>
+        <section>
+          <section>
+            <span id="shader-noise1"></span>
+            <script>
+              shader_slide_noise({
+                  code:  (value)=>`color = cos(position.x * ${value});`,
+                  initial_value: 1,
+                  min_value: 0,
+                  max_value:20,
+                  span_id: "shader-noise1",
+              })
+            </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/cos.png" />
+          </section>
+        </section>
+        <section>
+          <section>
+            <span id="shader-noise2"></span>
+            <script>
+              shader_slide_noise({
+                  code:  (value)=>`color = 0.5 + 0.5 * cos(position.x * ${value});`,
+                  initial_value: 20,
+                  min_value: 0,
+                  max_value:20,
+                  span_id: "shader-noise2",
+              })
+            </script>
+          </section>
+
+          <section>
+            <p><code>[-1, +1]</code></p>
+            <span class="fragment">
+              <p><code>* 0.5</code></p>
+              <p><code>[-0.5, +0.5]</code></p>
+            </span>
+            <span class="fragment">
+              <p><code>+ 0.5</code></p>
+            </span>
+            <p><code>[0, 1]</code></p>
+          </section>
+        </section>
+
+        <section>
+          <span id="shader-noise3"></span>
+          <script>
+            shader_slide_noise({
+                code:  (value)=>`color = 0.5 + 0.5 * cos(position.y * ${value});`,
+                initial_value: 20,
+                min_value: 0,
+                max_value:20,
+                span_id: "shader-noise3",
+            })
+          </script>
+        </section>
+
+        <section>
+          <span id="shader-noise5"></span>
+          <script>
+            shader_slide_noise({
+                code:  (value)=>
+`
+float patternX = 0.5 + 0.5 * cos(position.x * ${value});
+float patternY = 0.5 + 0.5 * cos(position.y * ${value});
+color = patternX * patternY`,
+                initial_value: 20,
+                min_value: 0,
+                max_value:20,
+                span_id: "shader-noise5",
+            })
+          </script>
+        </section>
+
+
+        <section>
+        <section>
+            <span id="shader-noise4"></span>
+            <script>
+                                      shader_slide_noise({
+                                          code:  (value)=>
+`float patternX = 0.5 + 0.5 * cos(position.x * ${value});
+float patternY = 0.5 + 0.5 * cos(position.y * ${value});
+color = 0.5 * (patternX + patternY)`,
+                                          initial_value: 20,
+                                          min_value: 0,
+                                          max_value:20,
+                                          span_id: "shader-noise4",
+                                      })
+            </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/noise(0).png" />
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/noise(1).png" />
+          </section>
+          <section>
+              <video controls>
+                  <source src="./img/fractak.mp4" type="video/mp4">
+                </video>
+            </section>
+            <section>
+              <img class="r-frame" data-src="./img/fractal.png" />
+            </section>
+          </section>
+
+        <!-- <section>
           <span id="shader-circle"></span>
           <script>
                         shader_slide({
@@ -238,7 +369,7 @@
                             span_id: "shader-curve-circle",
                         })
           </script>
-        </section>
+        </section> -->
       </div>
     </div>
 
@@ -261,27 +392,27 @@
 </html>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-      // Listen for slide change in Reveal.js
-      Reveal.addEventListener('slidechanged', function(event) {
-          const currentSection = event.currentSlide; // Get the current <section>
-            console.log(event)
-            console.log(event.previousSlide)
-            console.log(currentSection.querySelector("section"))
+  //   document.addEventListener("DOMContentLoaded", function () {
+  //       // Listen for slide change in Reveal.js
+  //       Reveal.addEventListener('slidechanged', function(event) {
+  //           const currentSection = event.currentSlide; // Get the current <section>
+  //             console.log(event)
+  //             console.log(event.previousSlide)
+  //             console.log(currentSection.querySelector("section"))
 
-          // Check if a canvas already exists in the slide to avoid duplication
-        //   if (!currentSection.querySelector("canvas")) {
-        //       const canvas = document.createElement("canvas");
-        //     //   canvas.width = window.innerWidth;
-        //     //   canvas.height = window.innerHeight;
-        //     //   canvas.style.position = "absolute";
-        //     //   canvas.style.top = "0";
-        //     //   canvas.style.left = "0";
-        //     //   canvas.style.zIndex = "-1"; // Puts it behind other content
-        //       currentSection.appendChild(canvas);
+  //           // Check if a canvas already exists in the slide to avoid duplication
+  //         //   if (!currentSection.querySelector("canvas")) {
+  //         //       const canvas = document.createElement("canvas");
+  //         //     //   canvas.width = window.innerWidth;
+  //         //     //   canvas.height = window.innerHeight;
+  //         //     //   canvas.style.position = "absolute";
+  //         //     //   canvas.style.top = "0";
+  //         //     //   canvas.style.left = "0";
+  //         //     //   canvas.style.zIndex = "-1"; // Puts it behind other content
+  //         //       currentSection.appendChild(canvas);
 
-        //       console.log("Canvas added to section:", currentSection);
-        //   }
-      });
-  });
+  //         //       console.log("Canvas added to section:", currentSection);
+  //         //   }
+  //       });
+  //   });
 </script>

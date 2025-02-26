@@ -141,3 +141,57 @@ const shader_slide = ({
     span_id
   )
 }
+const shader_slide_noise = ({
+  code,
+  initial_value,
+  min_value,
+  max_value,
+  span_id,
+}) => {
+  const ele = document.getElementById(span_id)
+  ele.innerHTML = `
+          <label for="slider" style="color: white; font-size: 1.em;">
+            <pre><code class="hljs glsl" id="mycode${span_id}" data-trim>
+</code></pre>
+          </label>
+          <input
+            type="range"
+            id="slider${span_id}"
+            min="${min_value}"
+            max="${max_value}"
+            step="0.001"
+            value="${initial_value}"
+            style="width: 100%;"
+          />
+          <canvas id="shaderCanvas${span_id}" style="width: 100%;"></canvas>
+    `
+  const slider = document.getElementById(`slider${span_id}`)
+  const codehtml = document.getElementById(`mycode${span_id}`)
+  //   const sliderValue = document.getElementById("sliderValue");
+  // const obj = {value: 0.}
+  let valuuuu = parseFloat(slider.value)
+  codehtml.innerHTML = code(valuuuu)
+  slider.addEventListener("input", function () {
+    valuuuu = parseFloat(slider.value)
+    codehtml.innerHTML = code(valuuuu)
+    // sliderValue.textContent = obj.value.toFixed(1)
+  })
+
+  blah(
+    `
+        precision mediump float;
+        uniform float time;
+      uniform float u_value;
+        uniform vec2 resolution;
+        const float pi = 3.141592653;
+
+        void main() {
+            vec2 position = gl_FragCoord.xy / resolution.y;
+            float color;
+            ${code("u_value")};
+        gl_FragColor = vec4(vec3(color), 1.0);
+                        }
+                        `,
+    span_id
+  )
+}
