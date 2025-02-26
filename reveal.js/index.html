@@ -402,8 +402,8 @@ color = 0.5 * (patternX + patternY)`,
                                       shader_slide_noise({
                                           code:  (value)=>
 `color = pattern(position * 2.) / 2.
-      + pattern(position * 4.) / 4.
-      + pattern(position * 8.) / 8.;`,
+      + pattern(position * 3.64) / 4.
+      + pattern(position * 7.15645) / 8.;`,
                                           initial_value: 20,
                                           min_value: 0,
                                           max_value:20,
@@ -562,8 +562,8 @@ position = position.x * new_X_axis
                                       shader_slide_noise({
                                           code:  (value)=>
 `color = pattern(rotate(position, 0. * ${value}) * 2.) / 2.
-      + pattern(rotate(position, 1. * ${value}) * 4.) / 4.
-      + pattern(rotate(position, 2. * ${value}) * 8.) / 8.;`,
+      + pattern(rotate(position, 1. * ${value}) * 3.64) / 4.
+      + pattern(rotate(position, 2. * ${value}) * 7.15645) / 8.;`,
                                           initial_value: 0,
                                           min_value: 0,
                                           max_value:2,
