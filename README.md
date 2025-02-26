@@ -1,4 +1,4 @@
-[Voir les slides](https://julesfouchy.github.io/Faire-de-l-art-avec-des-maths/)<br/>
+[Voir les slides](https://julesfouchy.github.io/Faire-de-l-art-avec-des-maths/) (faites <kbd>ESPACE</kbd> pour passer à la slide suivante)<br/>
 Mon contact: jules.fouchy@ntymail.com (ou privilégiez Discord: julesfouchy)
 
 Tutoriels:
