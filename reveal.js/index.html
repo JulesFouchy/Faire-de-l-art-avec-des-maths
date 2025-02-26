@@ -580,6 +580,75 @@ position = position.x * new_X_axis
                 <h3 >all at once</h3>
             </span>
           </section>
+
+          <section>
+          <section>
+            <span id="shader-all"></span>
+            <script>
+                                      shader_slide({
+                                          code:  (value)=>
+`position = position + vec2(cos(${value}),
+                           sin(${value}));
+`,
+                                          initial_value: 0,
+                                          min_value: 0,
+                                          max_value:20,
+                                          span_id: "shader-all",
+                                      })
+            </script>
+          </section>
+          <section>
+            <span id="shader-all2"></span>
+            <script>
+                                      shader_slide({
+                                          code:  (value)=>
+`position = position + vec2(cos(${value} * noise(position)),
+                           sin(${value} * noise(position)));
+`,
+                                          initial_value: 0,
+                                          min_value: 0,
+                                          max_value:8,
+                                          span_id: "shader-all2",
+                                      })
+            </script>
+          </section>
+          <section>
+            <span id="shader-all3"></span>
+            <script>
+                                      shader_slide({
+                                          code:  (value)=>
+`position = position + vec2(cos(${value} * noise(position)),
+                           sin(${value} * noise(position)));
+position = position + vec2(cos(${value} * noise(position)),
+                           sin(${value} * noise(position)));
+`,
+                                          initial_value: 0,
+                                          min_value: 0,
+                                          max_value:8,
+                                          span_id: "shader-all3",
+                                      })
+            </script>
+          </section>
+          <section>
+            <span id="shader-all4"></span>
+            <script>
+                                      shader_slide({
+                                          code:  (value)=>
+`position = position + vec2(cos(${value} * noise(position)),
+                           sin(${value} * noise(position)));
+position = position + vec2(cos(${value} * noise(position)),
+                           sin(${value} * noise(position)));
+position = position + vec2(cos(${value} * noise(position)),
+                           sin(${value} * noise(position)));
+`,
+                                          initial_value: 0,
+                                          min_value: 0,
+                                          max_value:8,
+                                          span_id: "shader-all4",
+                                      })
+            </script>
+          </section>
+          </section>
         <!-- <section>
           <span id="shader-circle"></span>
           <script>

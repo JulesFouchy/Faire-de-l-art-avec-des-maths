@@ -133,6 +133,33 @@ const shader_slide = ({
         uniform vec2 resolution;
         const float pi = 3.141592653;
 
+        
+        float pattern(vec2 pos) {
+  float patternX = 0.5 + 0.5 * cos(pos.x * 20.);
+  float patternY = 0.5 + 0.5 * cos(pos.y * 20.);
+  return 0.5 * (patternX + patternY);
+}
+vec2 rotate(vec2 position, float angle)
+{
+vec2 new_X_axis = vec2(
+    cos(angle),
+    sin(angle)
+);
+vec2 new_Y_axis = vec2(
+    -sin(angle),
+    cos(angle)
+);
+return position.x * new_X_axis
+         + position.y * new_Y_axis;
+  }
+
+  float noise(vec2 position)
+  {
+  
+  return pattern(rotate(position, 0. * 0.458) * 2.) / 2.
+      + pattern(rotate(position, 1. * 0.458) * 3.64) / 4.
+      + pattern(rotate(position, 2. * 0.458) * 7.15645) / 8.;}
+
         void main() {
             vec2 position = gl_FragCoord.xy / resolution.y;
             ${code("u_value")};
