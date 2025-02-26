@@ -243,7 +243,7 @@ return position.x * new_X_axis
   )
 }
 
-const curve_shader_code = (code,curve_color) => `
+const curve_shader_code = (code,curve_color, point_color) => `
 
 #define saturate(v) clamp(v, 0., 1.)
 // https://iquilezles.org/articles/distfunctions2d/
@@ -259,7 +259,7 @@ float get_dist(vec2 uv)
     float dist_to_curve = 9999999.;
     vec2  previous_position; // Will be filled during the first iteration of the loop
 
-    const int  nb_segments = 10; // TODO 40
+    const int  nb_segments = 100; // TODO 40
     const float thickness = 0.005;
 
     for (int i = 0; i <= nb_segments; i++)
@@ -287,11 +287,11 @@ pos *= 2.;
 pos.x *= resolution.x / resolution.y;
 
     float bob =float(${curve_color}) < 0.001 ? 0. :(  float(${curve_color}) * step(get_dist(pos), 0.));
-    {
+  if(float(${point_color}) > 0.001)  {
     float t = time;
     vec2 position = vec2(0.);
     ${code("u_value")};
-    bob += step(distance(position, pos),0.02);
+    bob += float(${point_color}) * step(distance(position, pos),0.02);
     }
     gl_FragColor = vec4(vec3(bob), 1.0);
                 }
@@ -302,6 +302,7 @@ const shader_slide_curve = ({
   min_value,
   max_value,
   curve_color,
+  point_color,
   span_id,
 }) => {
   const ele = document.getElementById(span_id)
@@ -342,7 +343,7 @@ const shader_slide_curve = ({
         const float pi = 3.141592653;
 
 
-        ${curve_shader_code(code, curve_color)}
+        ${curve_shader_code(code, curve_color, point_color)}
                         `,
     span_id
   )
