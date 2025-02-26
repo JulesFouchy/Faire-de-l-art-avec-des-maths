@@ -342,7 +342,35 @@ color = 0.5 * (patternX + patternY)`,
 
           
         <section>
+        <section>
             <span id="shader-fractal"></span>
+            <script>
+                                      shader_slide_noise({
+                                          code:  (value)=>
+`color = pattern(position * 2.) / 2.;`,
+                                          initial_value: 20,
+                                          min_value: 0,
+                                          max_value:20,
+                                          span_id: "shader-fractal",
+                                      })
+            </script>
+          </section>
+        <section>
+            <span id="shader-fractal2"></span>
+            <script>
+                                      shader_slide_noise({
+                                          code:  (value)=>
+`color = pattern(position * 2.) / 2.
+      + pattern(position * 4.) / 4.;`,
+                                          initial_value: 20,
+                                          min_value: 0,
+                                          max_value:20,
+                                          span_id: "shader-fractal2",
+                                      })
+            </script>
+          </section>
+        <section>
+            <span id="shader-fractal3"></span>
             <script>
                                       shader_slide_noise({
                                           code:  (value)=>
@@ -352,9 +380,18 @@ color = 0.5 * (patternX + patternY)`,
                                           initial_value: 20,
                                           min_value: 0,
                                           max_value:20,
-                                          span_id: "shader-fractal",
+                                          span_id: "shader-fractal3",
                                       })
             </script>
+          </section>
+          <section>
+            <img class="r-frame" data-src="./img/noise(1).png" />
+          </section>
+          </section>
+          
+        <section>
+            <h2>Chapitre 3</h2>
+            <h3 class="fragment">Courbes</h3>
           </section>
 
         <!-- <section>
