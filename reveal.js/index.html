@@ -479,6 +479,56 @@ position.y = sin(t * ${value});
               </video>
           </section>
           </section>
+          <section>
+              <section>
+                  <img class="r-frame" data-src="./img/rot.png" style="width: 500px;" />
+                </section>
+                
+                <section>
+            <img class="r-frame" data-src="./img/rot2.png" style="width: 500px;" />
+          </section>
+          <!-- <section>
+            <pre><code class="hljs" data-trim>
+vec2 new_X_axis = vec2(
+    cos(t),
+    sin(t)
+);
+vec2 new_Y_axis = vec2(
+    -sin(t),
+    cos(t)
+);
+position = position.x * new_X_axis
+         + position.y * new_Y_axis;
+            </code></pre>
+          </section> -->
+          <section>
+            <span id="shader-rot"></span>
+            <script>
+                                      shader_slide({
+                                          code:  (value)=>
+`vec2 new_X_axis = vec2(
+    cos(${value}),
+    sin(${value})
+);
+vec2 new_Y_axis = vec2(
+    -sin(${value}),
+    cos(${value})
+);
+position = position.x * new_X_axis
+         + position.y * new_Y_axis;
+`,
+                                          initial_value: 0,
+                                          min_value: -3,
+                                          max_value:3,
+                                          span_id: "shader-rot",
+                                      })
+            </script>
+          </section>
+          
+          <section>
+            <img class="r-frame" data-src="./img/rotmat.png" />
+          </section>
+          </section>
 
         <!-- <section>
           <span id="shader-circle"></span>
