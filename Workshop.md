@@ -1,6 +1,6 @@
-[Shadertoy](https://www.shadertoy.com/)
-[Extension Shadertoy pour rajouter des sliders (Firefox)](https://addons.mozilla.org/en-US/firefox/addon/shadertoy-unofficial-plugin/)
-[Extension Shadertoy pour rajouter des sliders (Chrome)](https://chromewebstore.google.com/detail/shadertoy-unofficial-plug/ohicbclhdmkhoabobgppffepcopomhgl?hl=en)
+[Shadertoy](https://www.shadertoy.com/)<br/>
+[Extension Shadertoy pour rajouter des sliders (Firefox)](https://addons.mozilla.org/en-US/firefox/addon/shadertoy-unofficial-plugin/)<br/>
+[Extension Shadertoy pour rajouter des sliders (Chrome)](https://chromewebstore.google.com/detail/shadertoy-unofficial-plug/ohicbclhdmkhoabobgppffepcopomhgl?hl=en)<br/>
 
 ## Step 1 : UV
 
