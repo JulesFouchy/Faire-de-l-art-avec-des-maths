@@ -2,6 +2,8 @@
 [Extension Shadertoy pour rajouter des sliders (Firefox)](https://addons.mozilla.org/en-US/firefox/addon/shadertoy-unofficial-plugin/)<br/>
 [Extension Shadertoy pour rajouter des sliders (Chrome)](https://chromewebstore.google.com/detail/shadertoy-unofficial-plug/ohicbclhdmkhoabobgppffepcopomhgl?hl=en)<br/>
 
+Ou alors, un excellent éditeur beaucoup plus complet (avec breakpoint, autocomplétion, inspection des différentes valeurs, etc.) : https://shadered.org/
+
 ## Step 1 : UV
 
 ```glsl
